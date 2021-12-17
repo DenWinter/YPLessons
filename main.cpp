@@ -5,25 +5,48 @@
 
 using namespace std;
 
-int main() {
-    vector<pair<int, string>> name_age;
-    int count;
-    cin >> count;
-    for (int i = 0; i < count; ++i) {
-        string name;
-        int age;
-        cin >> name >> age;
-        name_age.push_back({age, name});
-        // сохраните в вектор пар
+float CalcMedian(vector<float> numbers) {
+    sort(numbers.begin(), numbers.end());
+    int array_size = numbers.size();
+    int half_size = array_size / 2;
+    if (array_size % 2 == 0) {
+        return ((numbers[half_size - 1]) + (numbers[half_size])) / 2;
+    } else {
+        return numbers[half_size];
     }
-    reverse(name_age.begin(), name_age.end());
-    for(auto n_a : name_age) {
-        cout << n_a.second << endl;
-    }
+}
 
-    // выведите только имена в порядке убывания возраста
-    // Jack
-    // John
-    // ...
+vector<string> SplitIntoWords(const string& text) {
+    vector<string> words;
+    string word;
+    for (const char c : text) {
+        if (c == ' ') {
+            if (!word.empty()) {
+                words.push_back(word);
+                word.clear();
+            }
+        } else {
+            word += c;
+        }
+    }
+    if (!word.empty()) {
+        words.push_back(word);
+    }
+    return words;
+}
+
+vector<float> ArrayCastToFloat(const vector<string>& array_string) {
+    vector<float> array_float;
+    for(const string& s : array_string) {
+        array_float.push_back(atof(s.c_str()));
+    }
+    return array_float;
+}
+
+
+int main() {
+    string s;
+    getline(cin, s);
+    cout << CalcMedian(ArrayCastToFloat(SplitIntoWords(s))) << endl;
 }
 
