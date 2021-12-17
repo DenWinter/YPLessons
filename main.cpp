@@ -43,10 +43,8 @@ vector<float> ArrayCastToFloat(const vector<string>& array_string) {
     return array_float;
 }
 
-
 int main() {
     string s;
     getline(cin, s);
     cout << CalcMedian(ArrayCastToFloat(SplitIntoWords(s))) << endl;
 }
-
